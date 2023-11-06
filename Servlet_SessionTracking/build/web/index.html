@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cart shopping</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form method="Post" action="AddToCart">
+            Product:
+            <select name="product">
+                <option value="Mouse">Mouse</option>
+                <option value="Monitor">Monitor</option>
+                <option value="KeyBoard">KeyBoard</option>
+                <option value="Ram">Ram</option>
+                <option value="SSD">SSD</option> 
+            </select>
+            <br>
+            Quantity:<input type="number" name="quantity"/>
+            <br>
+            <input type="submit" value="Add to Cart"/>
+            <br>
+            <a href="ViewCart">View Cart</a>
+        </form>
+    </body>
+</html>

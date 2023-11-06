@@ -1,0 +1,56 @@
+A)
+-fa21: q1 q2 q3 --/ sum / search / skill emp (insert n-ntable) (=su20)	##
+
+-sp21: q1 q2 q3 --/ inforCon / Searching / author-paper (insert n-ntable)	##
+
+-su21B5: q1 q2 --/ domain account / room (list+delete+search room)		##
+
+-su21: q2 pratice x
+
+- trail: 
+B)
+-2_Su19: deparment	
+
+-3_19B5: list skill
+
+-4_Su19B5: list skill
+
+-5_Su20: concentrate / student/ search /skill	##
+
+-6_sp21: add
+
+-7_sp21: list/ login/ event record	##
+
+-8_sp21: get substring / shool year / Login?List/delete	##
+-9
+C)
+
+pe1x
+
+pe2:x department
+
+pe3:x
+
+pe4: student/search
+
+pe5: department
+
+pe6#: emp/job
+
+pe7: job/company
+
+pe8: grp/ contact
+
+pe9xxxxx
+
+p10#: concen/contain // login/ certificate//
+
+pe11#: //subject
+
+
+
+
+import
+import models.Student;
+import java.util.ArrayList;
+import java.util.List;

@@ -1,0 +1,60 @@
+ 
+#table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+}
+#table td, #table th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+#table tr:nth-child(even){background-color: #f2f2f2;}
+#table tr:hover {background-color: #ddd;}
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #6c9dc6;
+    color: white;
+} 
+
+a:link, a:visited {
+    background-color: #00BFFF;
+    color: white;
+    padding: 8px 12px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+a:hover, a:active {
+    background-color: red;
+}
+
+#tableDate {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 10%;
+}
+#tableDate td, #tableDate th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+#tableDate tr:nth-child(even){background-color: #f2f2f2;}
+#tableDate tr:hover {background-color: #ddd;}
+#tableDate th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #6c9dc6;
+    color: white;
+} 
+
+#button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}

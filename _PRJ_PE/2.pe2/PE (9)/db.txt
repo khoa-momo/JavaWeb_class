@@ -1,0 +1,56 @@
+USE roledb
+
+CREATE TABLE [dbo].[Feature](
+	[id] [int] NULL,
+	[name] [nvarchar](50) NULL
+)
+CREATE TABLE [dbo].[Feature_role](
+	[rid] [int] NULL,
+	[fid] [int] NULL
+)
+CREATE TABLE [dbo].[Roles](
+	[roleid] [int] NOT NULL,
+	[rolename] [varchar](150) NOT NULL
+ )
+ CREATE TABLE [dbo].[Users](
+	[username] [varchar](150) NOT NULL,
+	[password] [varchar](150) NOT NULL
+)
+CREATE TABLE [dbo].[Role_User](
+	[roleid] [int] NOT NULL,
+	[username] [varchar](150) NOT NULL
+)
+
+
+
+
+INSERT [dbo].[Feature] ([id], [name]) VALUES (1, N'insert')
+INSERT [dbo].[Feature] ([id], [name]) VALUES (2, N'edit')
+INSERT [dbo].[Feature] ([id], [name]) VALUES (3, N'detail')
+INSERT [dbo].[Feature] ([id], [name]) VALUES (4, N'delete')
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (1, 1)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (1, 2)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (1, 3)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (1, 4)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (1, 5)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (2, 1)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (2, 2)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (2, 3)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (2, 4)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (3, 1)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (3, 2)
+INSERT [dbo].[Feature_role] ([rid], [fid]) VALUES (4, 1)
+INSERT [dbo].[Role_User] ([roleid], [username]) VALUES (1, N'mra')
+INSERT [dbo].[Role_User] ([roleid], [username]) VALUES (2, N'mrb')
+INSERT [dbo].[Role_User] ([roleid], [username]) VALUES (2, N'mrc')
+INSERT [dbo].[Role_User] ([roleid], [username]) VALUES (3, N'mrc')
+INSERT [dbo].[Role_User] ([roleid], [username]) VALUES (4, N'mrd')
+INSERT [dbo].[Roles] ([roleid], [rolename]) VALUES (1, N'admin')
+INSERT [dbo].[Roles] ([roleid], [rolename]) VALUES (2, N'supermod')
+INSERT [dbo].[Roles] ([roleid], [rolename]) VALUES (3, N'mod')
+INSERT [dbo].[Roles] ([roleid], [rolename]) VALUES (4, N'member')
+INSERT [dbo].[Users] ([username], [password]) VALUES (N'mra', N'mra')
+INSERT [dbo].[Users] ([username], [password]) VALUES (N'mrb', N'mrb')
+INSERT [dbo].[Users] ([username], [password]) VALUES (N'mrc', N'mrc')
+INSERT [dbo].[Users] ([username], [password]) VALUES (N'mrd', N'mrd')
+

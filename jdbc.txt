@@ -1,0 +1,214 @@
+public class DBContext {
+    protected Connection connection;
+    public DBContext(){
+        try{
+            String user="khoa";
+            String pass="123";
+            String url="jdbc:sqlserver://DESKTOP-GLQH2EO\\SQLEXPRESS:1433; databaseName=IOT1601";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection = DriverManager.getConnection(url, user, pass);
+        }catch(Exception ex){
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+}
+
+public class DBContext { 
+/*USE BELOW METHOD FOR YOUR DATABASE CONNECTION FOR BOTH SINGLE AND MULTILPE SQL SERVER INSTANCE(s)*/
+ /*DO NOT EDIT THE BELOW METHOD, YOU MUST USE ONLY THIS ONE FOR YOUR DATABASE CONNECTION*/
+    public Connection getConnection() throws Exception {
+        String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        return DriverManager.getConnection(url, userID, password);
+    }
+ 
+ /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
+    private final String serverName = "DESKTOP-GLQH2EO\\SQLEXPRESS";
+    private final String dbName = "IOT1601";
+    private final String portNumber = "1433";
+    private final String userID = "khoa";
+    private final String password = "123";
+
+    public static void main(String[] args) {
+        try {
+            DBContext dBContext = new DBContext();
+            if (dBContext.getConnection() != null) {
+                System.out.println("Kết nối thành công");
+            } else {
+                System.out.println("Kết nối thất bại");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public class DepartmentDAO extends DBContext{ 
+ 
+    public ArrayList<Department> getAllDepartments(){
+        ArrayList<Department> list = new ArrayList<>();
+        try{
+            String sql = "Select id, name from Department";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Department d = new Department(
+                    rs.getInt("id"), 
+                    rs.getString("name"));
+                list.add(d);
+            }
+        }catch(Exception ex){
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+}
+
+public class EmployeeDAO extends DBContext{
+    
+    public ArrayList<Employee> getAllEmployeesByDeptId(int deptId){
+        ArrayList<Employee> list = new ArrayList<>();
+        try{
+            String sql = "select e.*, d.name [departmentname] from Employee e, Department d "
+                    + "where e.deptID = d.id "
+                    + "and e.deptID = ?" ;
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, deptId);//setInt
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()){
+                Employee e = new Employee(
+                    rs.getInt("id"), 
+                    rs.getString("name"),
+                    rs.getDate("dob").toLocalDate(), 
+                    rs.getString("sex"),
+                    rs.getString("position"));
+                    e.addDepartment(rs.getInt("deptID"), rs.getString("departmentname"));
+                list.add(e);
+            }
+        }
+        catch(Exception ex){
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    //addEmployee
+    public void addEmployee(Employee e){
+        try{
+            String sql = "insert into Employee(name, sex, dob, position, deptID)"
+                    + "values (?,?,?,?,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, e.getName());
+            stm.setString(2, e.getSex());
+            stm.setDate(3, Date.valueOf(e.getDob()));
+            stm.setString(4, e.getPosition());
+            stm.setInt(5, e.getDepartment().getId());
+            
+            stm.executeUpdate();
+        }
+        catch(Exception ex){
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+public class StudentDAO {
+
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
+    public List<Student> getAllStudents() {
+        List<Student> list = new ArrayList<>();
+        try {
+            String sql = "select * from student";
+            conn = new DBContext().getConnection();//Mở kết nối với sql server
+            ps = conn.prepareStatement(sql); //Đưa câu sql vào prepareStatement  //conn.prepareStatement
+            //Thực thi câu lệnh sql sẽ trả về result set
+            rs = ps.executeQuery(); //Lặp rs để lấy data
+            while (rs.next()) {
+                Student student = new Student(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5));
+                list.add(student);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public Student getStudentById(int id){
+        try {
+            String sql = "select * from student where id = ?";
+            //Mở kết nối với sql server
+            conn = new DBContext().getConnection();
+            //Đưa câu sql vào prepareStatement 
+            ps = conn.prepareStatement(sql);
+            //set param
+            ps.setInt(1, id);
+            //Thực thi câu lệnh sql sẽ trả về result set
+            rs = ps.executeQuery();
+            //Lặp rs để lấy data
+            while (rs.next()) {
+                Student student = new Student(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5));
+                return student;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(StudentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public static void main(String[] args) {
+        StudentDAO studentDAO = new StudentDAO();
+//        List<Student> list = studentDAO.getAllStudents();
+//        for (Student student : list) {
+//            System.out.println(student);
+//        }
+        
+        Student student5 = studentDAO.getStudentById(5);
+        System.out.println(student5.toString());
+        Student student6 = studentDAO.getStudentById(6);
+        System.out.println(student6.toString());
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

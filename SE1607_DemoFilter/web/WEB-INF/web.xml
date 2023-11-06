@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <filter>
+        <filter-name>LoggingFilter</filter-name>
+        <filter-class>filter.LoggingFilter</filter-class>
+        <init-param>
+            <param-name>LogFileName</param-name>
+            <param-value>C:\Users\DELL\Downloads\PRJ\SE1607_DemoFilter\log.txt</param-value>
+        </init-param>
+    </filter>
+    
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>filter.LoginFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>LoggingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <servlet>
+        <servlet-name>First</servlet-name>
+        <servlet-class>controller.First</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>First</servlet-name>
+        <url-pattern>/First</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

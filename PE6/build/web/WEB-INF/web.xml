@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ListJobs</servlet-name>
+        <servlet-class>controllers.ListJobs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmployeeJob</servlet-name>
+        <servlet-class>controllers.EmployeeJob</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArrangeJob</servlet-name>
+        <servlet-class>controllers.ArrangeJob</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListJobs</servlet-name>
+        <url-pattern>/ListJobs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeJob</servlet-name>
+        <url-pattern>/EmployeeJob</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArrangeJob</servlet-name>
+        <url-pattern>/ArrangeJob</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

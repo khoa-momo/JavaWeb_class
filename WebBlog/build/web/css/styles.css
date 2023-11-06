@@ -1,0 +1,29 @@
+ 
+#table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+}
+#table td, #departments th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+#table tr:nth-child(even){background-color: #f2f2f2;}
+#table tr:hover {background-color: #ddd;}
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA7D;
+    color: white;
+} 
+a:link, a:visited {
+    background-color: #00BFFF;
+    color: white;
+    padding: 8px 12px;
+    text-align: center; 
+    display: inline-block;
+}
+a:hover, a:active {
+    background-color: red;
+}

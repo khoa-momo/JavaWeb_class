@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CalculatorServlet</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form method="Post" action="CalculatorServlet">  
+            <center><table>
+                <tr>
+                    <th colspan="2">Calculator</th>
+                </tr>
+                <tr>
+                    <td>First number</td>
+                    <td><input type="text" name="first"/></td>
+                </tr>
+                <tr>
+                    <td>Second number</td>
+                    <td><input type="text" name="second"/></td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        Add<input type="radio" value="+" name="operator"/>
+                        Sub<input type="radio" value="-" name="operator"/>
+                        Mul<input type="radio" value="*" name="operator"/>
+                        Div<input type="radio" value="/" name="operator"/>
+                    </td>                   
+                </tr>
+                <tr>
+                    <td><input type="Submit" value="Calculate"/></td>
+                    <td><input type="Reset" value="Clear"/></td> 
+                </tr>
+            </table></center>
+        </form>
+    </body>
+</html>

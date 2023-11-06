@@ -1,0 +1,79 @@
+*E1
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <form action="calculate">
+            <table>
+                <tr>
+                    <td>Enter a:</td>
+                    <td><input type="text" name="a" value="${a}" /></td>
+                </tr>
+                <tr>
+                    <td>Enter b:</td>
+                    <td><input type="text" name="b" value="${b}" /></td>
+                </tr>
+                <tr>
+                    <td>Calculator</td>
+                    <td>
+                        <select name="operator">
+                            <option ${operator eq "+" ? "selected":""}>+</option>
+                            <option ${operator eq "-" ? "selected":""}>-</option>
+                            <option ${operator eq "*" ? "selected":""}>*</option>
+                            <option ${operator eq "/" ? "selected":""}>/</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="OK"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Result</td>
+                    <td><input type="text" value="${result}" /></td>
+                </tr>
+            </table>
+                <h3 style="color: red">${error}</h3>
+
+        </form>
+    </body>
+</html>
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            int a = Integer.parseInt(request.getParameter("a"));
+            int b = Integer.parseInt(request.getParameter("b"));
+            String operator = request.getParameter("operator");
+            double result = 0;
+
+            switch (operator) {
+                case "+":
+                    result = a + b;
+                    break;
+                case "-":
+                    result = a - b;
+                    break;
+                case "*":
+                    result = a * b;
+                    break;
+                case "/":
+                    if (b == 0) {
+                        request.setAttribute("error", "Loi chi cho 0");
+                    } else {
+                        result = a / b;
+                        break;
+                    }
+
+            }
+            request.setAttribute("a", a);
+            request.setAttribute("b", b);
+            request.setAttribute("operator", operator);
+            request.setAttribute("result", result);
+            request.getRequestDispatcher("caculator.jsp").forward(request, response);
+        }
+    }
